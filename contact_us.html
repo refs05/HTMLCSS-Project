@@ -19,31 +19,42 @@
         <div class="form">
             <h3>Contact Us</h3>
 
-            <form action="" class="needs-validation" name="form1" onsubmit="required()" novalidate>
+            <form action="review_message.html" class="needs-validation" name="form1" onsubmit="return sendToLocal()" novalidate>
                 <div class="mb-3">
                     <label for="exampleInputFullName" class="form-label">Full Name<span>*</span></label>
                     <input type="text" class="form-control" id="exampleInputFullName" name="fullname" required>
+                    <div class="invalid-feedback">
+                        You have wrong input fullname
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address<span>*</span></label>
                     <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                    <div class="invalid-feedback">
+                        You have wrong input email
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPhoneNumber1" class="form-label">Phone Number<span>*</span></label>
-                    <input type="number" name="phone" class="form-control" id="exampleInputphone" required>
+                    <input type="number" name="phone" class="form-control" id="exampleInputphone" minlength="11" required>
+                    <div class="invalid-feedback">
+                        You have wrong input Phone Number
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="nasionality" class="form-label">Nasionality</label>
-                    <select class="form-select" aria-label="Default select example" id="nasionality">
-                        <option selected>Selected</option>
+                    <select class="form-select" aria-label="Default select example" id="nasionality" name="nasionality">
                         <option value="indonesia">Indonesia</option>
                         <option value="germany">Germany</option>
                         <option value="france">France</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Please select the nasionality
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Full Name here..."></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message" placeholder="Your Message here..."></textarea>
                 </div>
                 <div class="mb-3">
                     <input type="submit" class="button" value="Submit" />
@@ -74,20 +85,31 @@
             })()
     </script>
     <script>
-        function myFunction() {
-            alert("success");
-        }
 
-        function required() {
-            var emptName = document.form1.fullname.value;
-            var emptEmail = document.form1.email.value;
-            var emptPhone = document.form1.phone.value;
-            if (emptName == "" || emptEmail == "" || emptPhone == "") {
-                alert("Wrong Value");
+        function sendToLocal() {
+
+            let fullName = document.form1.fullname.value;
+            let email = document.form1.email.value;
+            let phone = document.form1.phone.value;
+            let nasionality = document.form1.nasionality.value;
+            let message = document.form1.message.value;
+
+            let emailpatt = /.com/;
+            if (phone.length < 10) {
+                alert("Please input min 10 number");
+                return false;
+            } else if (emailpatt.test(email) == false) {
+                alert("Wrong format");
                 return false;
             } else {
-                 alert('Success');
-                 return true; 
+                let dataUser = {
+                fullname : fullName,
+                email : email,
+                phone : phone,
+                nasionality : nasionality,
+                message : message
+            }
+            localStorage.setItem("dataUser", JSON.stringify(dataUser));
             }
         }
     </script>

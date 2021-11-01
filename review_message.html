@@ -1,0 +1,54 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Review Message</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="review_message.css">
+ </head>
+ <body>
+    <div class="container">
+        <div class="content">
+            <p>Full Name</p>       
+            <p>Email Address</p>
+            <p>Phone Number</p>
+            <p>Nationality</p> 
+                
+            <div class="answer">
+                <span>: Mike Wazowski</span><br>
+                <span>: mr.wazowski@email.com</span><br>
+                <span>: 0000000000</span><br>
+                <span>: Indonesian</span>
+            </div>
+
+            <p class="desc">Hi Anne, I’m Mike from Monsters, Inc. I’ve seen your previous project and it was really amazing. And as you know our company are planning to build new mobile application. I hope you can join us to develope this application. We look forward to hearing from you and hope you’ll join our project!</p>
+
+            <hr/>
+            
+            <div class="end">
+                <h3>Thanks for containing us!</h3>
+                <h3>We will be in touch with you shortly.</h3>
+            </div>
+            <a href="home.html"><button>Home</button></a>
+        </div>
+        <div class="decor">
+            <img src="img/img-dot.png" alt="">
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+    <script>
+        let str = JSON.parse(localStorage.getItem('dataUser'))
+        document.getElementsByTagName('span')[0].innerHTML= ': ' + str.fullname;
+        document.getElementsByTagName('span')[1].innerHTML= ': ' + str.email;
+        document.getElementsByTagName('span')[2].innerHTML= ': ' + str.phone;
+        document.getElementsByTagName('span')[3].innerHTML= ': ' + str.nasionality;
+        document.getElementsByClassName('desc')[0].innerHTML= str.message;
+</script>
+ </body>
+ </html>
